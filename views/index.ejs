@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<body>
+	<h1></h1>
+	<ul>
+		<% post.forEach(function(obj){ %>
+		<li>
+			<h3><a href="/blog/<%= obj.id %>"><%= obj.title %></a></h3>
+			</br>
+			<p>title: <%= obj.title %></p>
+			</br>
+			<p>author: <%= obj.author %></p>
+			<p>post: <%= obj.post %></p>
+			</br>
+		</li>
+		<% }); %>
+	</ul>
+</body>
+</html>
