@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <body>
-	<h1></h1>
-	<ul>
+	<h1 style="font-family: monospace;">ItsNatsBlog</h1>
 		<% post.forEach(function(obj){ %>
-		<li>
-			<h3><a href="/blog/<%= obj.id %>"><%= obj.title %></a></h3>
+		<center>	<h2 style="font-family: monospace;"><a href="/blog/<%= obj.id %>"><%= obj.title %></a></h2>
 			</br>
-			<p>title: <%= obj.title %></p>
+			<img style="height:400px;max-width:500px;width: expression(this.width > 500 ? 500: true);" id="Happy_CpuDude" src="<%= obj.pic %>" />
 			</br>
-			<p>author: <%= obj.author %></p>
-			<p>post: <%= obj.post %></p>
-			</br>
-		</li>
+			<p style="font-family: monospace;"><b>by: <%= obj.author %></b></p>
+			<p style="font-family: monospace;"><%= obj.post %></p>
+			</br></center>
 		<% }); %>
-	</ul>
+		<a style="font-family: monospace;" href="/blogs/new"> New Post! </a>
 </body>
 </html>

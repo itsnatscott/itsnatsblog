@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+	<title>itsnatsblog</title>
+</head>
+<body>
+	<h1 style="font-family: monospace;"><%= thisBlog.title %></h1>
+	</br>
+	<img style="height:400px;max-width:500px;width: expression(this.width > 500 ? 500: true);" id="Happy_CpuDude" src="<%= thisBlog.pic %>" />
+	<p style="font-family: monospace;"><b>by: <%= thisBlog.author %></b></p>
+	<p style="font-family: monospace;"><%= thisBlog.post %></p>
+			</br></center>
+	<a href="/blogs/<%= thisBlog.id %>/edit">edit this post here</a>
+
+	<form method="POST" action="/blog/<%= thisBlog.id %>?_method=DELETE">
+		<button>erase</button>
+	</form>
+</body>
+</html>

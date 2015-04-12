@@ -12,7 +12,7 @@ app.use(methodOverride('_method'));
 app.get('/', function(req,res){
 	res.redirect('/blogs')
 });
-
+//show all posts
 app.get('/blogs', function(req,res){
 	db.all("SELECT * FROM posts", function(err,data){
 		if (err) {
@@ -25,6 +25,21 @@ app.get('/blogs', function(req,res){
 	});
 
 });
+//show individual post
+app.get ("/blog/:id", function(req,res){
+	var id = req.params.id
+	db.get("SELECT * FROM posts WHERE id = ?",id,function(err,data){
+console.log(data,req.params.id)
+	item = data
+res.render('show.ejs', {thisBlog: item})
+	});
+});
+
+//make new post
+app.get('/blogs/new', function(req, res){
+	res.render('new.ejs')
+})
+
 
 
 
