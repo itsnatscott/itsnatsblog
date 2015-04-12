@@ -53,6 +53,28 @@ app.post("/blogs", function(req, res) {
 			res.redirect('/blogs');
 });
 
+//send user to edit form
+app.get("/blog/:id/edit", function(req,res){
+	var id = req.params.id
+	db.get("SELECT * FROM posts WHERE id = ?", id, function(err, data) {
+		console.log(data, req.params.id)
+		item = data
+		res.render('edit.ejs', {
+			thisBlog: item
+		})
+	});
+});
+
+//update the post
+app.put('/blog/:id', function(req, res){
+    var id = req.params.id
+    console.log(id)
+    db.run("UPDATE posts SET title = ?, author = ?, post = ?, pic = ? WHERE id = ?", req.body.title, req.body.author, req.body.post, req.body.pic , id, function(err) {
+        if (err) throw err;
+        res.redirect('/blog/' + id)
+    });
+});
+
 
 
 app.listen(3000);

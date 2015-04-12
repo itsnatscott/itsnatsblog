@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <body>
-	<h1 style="font-family: monospace;">ItsNatsBlog</h1>
+	<h1 style="font-family: monospace;"><center>ItsNatsBlog</center></h1>
 		<% post.forEach(function(obj){ %>
 		<center>	<h2 style="font-family: monospace;"><a href="/blog/<%= obj.id %>"><%= obj.title %></a></h2>
 			</br>
 			<img style="height:400px;max-width:500px;width: expression(this.width > 500 ? 500: true);" id="Happy_CpuDude" src="<%= obj.pic %>" />
 			</br>
 			<p style="font-family: monospace;"><b>by: <%= obj.author %></b></p>
-			<p style="font-family: monospace;"><%= obj.post %></p>
+			<p style="font-family: monospace;width: 400px;"><%= obj.post %></p>
 			</br></center>
 		<% }); %>
 		<a style="font-family: monospace;" href="/blogs/new"> New Post! </a>
