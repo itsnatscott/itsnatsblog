@@ -21,7 +21,6 @@ app.get('/blogs', function(req, res) {
 			console.log(err);
 		} else {
 			var posts = data;
-			console.log(posts);
 		}
 		res.render("index.ejs", {
 			post: posts
@@ -33,7 +32,6 @@ app.get('/blogs', function(req, res) {
 app.get("/blog/:id", function(req, res) {
 	var id = req.params.id
 	db.get("SELECT * FROM posts WHERE id = ?", id, function(err, data) {
-		console.log(data, req.params.id)
 		item = data
 		res.render('show.ejs', {
 			thisBlog: item
@@ -48,7 +46,7 @@ app.get('/blogs/new', function(req, res) {
 //create new post
 app.post("/blogs", function(req, res) {
 	db.run("INSERT INTO posts (title, pic, author, post) VALUES (? , ? , ? , ? )", req.body.title, req.body.pic, req.body.author, req.body.post, function(err) {
-		if (err) throw err;
+		if (err) console.log(err);
 	})
 			res.redirect('/blogs');
 });
@@ -57,7 +55,6 @@ app.post("/blogs", function(req, res) {
 app.get("/blog/:id/edit", function(req,res){
 	var id = req.params.id
 	db.get("SELECT * FROM posts WHERE id = ?", id, function(err, data) {
-		console.log(data, req.params.id)
 		item = data
 		res.render('edit.ejs', {
 			thisBlog: item
@@ -68,11 +65,19 @@ app.get("/blog/:id/edit", function(req,res){
 //update the post
 app.put('/blog/:id', function(req, res){
     var id = req.params.id
-    console.log(id)
     db.run("UPDATE posts SET title = ?, author = ?, post = ?, pic = ? WHERE id = ?", req.body.title, req.body.author, req.body.post, req.body.pic , id, function(err) {
-        if (err) throw err;
+        if (err) console.log(err);
         res.redirect('/blog/' + id)
     });
+});
+
+//delete a post
+app.delete("/blog/:id", function(req, res) {
+	var id = req.params.id
+	db.run("DELETE FROM posts WHERE id = ?", id, function(err) {
+		if (err) console.log(err);
+		res.redirect('/')
+	});
 });
 
 
@@ -82,4 +87,3 @@ console.log("Listening 3000")
 
 
 
-/*Plan on waking up, dropping Dorothy at work, having breakfast with Sammy, then heading out to the zoo around 10. stay there for a couple of hours then get milkshakes for lunch. Then some legos in the afternoon.*/
