@@ -1,4 +1,5 @@
 Write a Blogging App for runnning a blog.
+![alt text] (http://i.imgur.com/rXAx7p0.jpg) 
 
 Through the browser should be able to:
 1) See a list of all posts
